@@ -4,7 +4,7 @@
 
 ## Explicación
 
-Este proyecto es un reto de visualización de datos mediante Kibana y Elastic. Por otro lado, hemos intentado implementar seguridad pero no hemos tenido exito. Para la realización hemos seguido los siguientes pasos:
+Este proyecto es un reto de visualización de datos mediante Kibana y Elastic. Por otro lado, hemos implementado seguridad con credenciales de acceso a los nodos. Para la realización hemos seguido los siguientes pasos:
 
 1. Diseño del docker-compose sin seguridad
 
@@ -20,7 +20,11 @@ Tras saber que todo funciona realizamos un analisis de los diferentes datasets q
 
 5. Implementar visualizaciones
 
-Por último, analizamos el CSV elegido para implementar las visualizaciones convenientes.
+Continuamos analizando el CSV elegido para implementar las visualizaciones convenientes.
+
+6. Implementación de seguridad
+
+Tras lograr realizar todo lo anterior conseguimos implementar la seguridad de los nodos.
 ## Instalación
 
 1. Clonar el repositorio:
@@ -32,15 +36,20 @@ Por último, analizamos el CSV elegido para implementar las visualizaciones conv
     cd visualizacion-G2
     ```
 3. Construir y lanza los contenedores Docker:
-    ```bash
+
+Sin seguridad:
+
     docker compose up -d
-    ```
+    
+Con seguridad:
+
+    docker-compose -f docker-composeSEC.yml up -d
 
 ## Uso
 
 1. Acceder a Kibana:
     ```
-    http://localhost:5601
+    https://localhost:5601
     ```
 2. Acceder a explorar por tu cuenta.
 
@@ -48,7 +57,7 @@ Por último, analizamos el CSV elegido para implementar las visualizaciones conv
    
 ## Configuración de Docker Compose
 
-Aquí está la configuración de Docker Compose:
+Aquí está la configuración de Docker Compose sin seguridad:
 
 ```yaml
 services:
@@ -87,14 +96,14 @@ volumes:
 
 ## Posibles vías de mejora
 
-✔️ Para evitar acceso no deseados estaría bien la introducción de seguridad.
+✔️ Implementar más nodos de elastic para un mayor rendimiento y escalabilidad.
 
 ✔️ Se podría realizar un lavado del CSV haciendo diversas modificaciones como la eliminación de columnas no utilizadas.
 
 
 ## Problemas / Retos encontrados
 
-🔴 Al probar a integrar el sistema con seguridad hemos tenido múltiples problemas como no poder acceder a elastic o tardía al lanzar el sistema para acceder a kibana.
+🔴 En la integración de la seguridad en el sistema hemos tenido múltiples problemas como no poder acceder a elastic o tardía al lanzar el sistema para acceder a kibana.
 
 🔴 Al analizar qué visualizaciones realizar, tuvimos problemas con el mapa geográfico por lo que tuvimos que buscar un CSV que se adecuara.
 
