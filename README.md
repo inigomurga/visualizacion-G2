@@ -57,12 +57,12 @@ services:
     container_name: elasticsearch # Nombre del contenedor
     environment: # Especificar la variables de entorno
       - discovery.type=single-node # Especificación de que va a ser un único nodo
-      - bootstrap.memory_lock=true
+      - bootstrap.memory_lock=true # Evita que Elastic se quede sin memoria bloqueando el uso
       - xpack.security.enabled=false # Deshabilitar seguridad
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+    ulimits: # Determina los límites de recursos que puedes aplicar a un contenedor en Docker
+      memlock: # Límite de memoria bloqueada en RAM
+        soft: -1 # Límite que puede ser superado temporalmente -1 es infinito
+        hard: -1 # Límite que no puede ser superado -1 es infinito
     volumes: # Volumen para la persistencia de datos
       - esdata:/usr/share/elasticsearch/data #Ubicación del volumen
     ports: # Mapeo de puertos
@@ -101,6 +101,9 @@ volumes: # Volumen para la persistencia de datos
 
 ## Alternativas posibles
 
-Se podría sustituir Kibana y utilizar Grafana.
+Se podría sustituir Kibana y utilizar Grafana puesto que es un proyecto más bien pequeño y temporal.
 
-Se podría sustituir Elastic y utilizar Apache Solr.
+Se podría sustituir Elastic y utilizar Apache Solr analizando mejor el texto pero peor los números.
+
+Sin embargo, la integración conjunta de Kibana y Elastic es más compatible que la de Grafana y Apache Solr.
+
