@@ -106,10 +106,7 @@ services:
       - ELASTICSEARCH_HOSTS=https://es01:9200
       - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
-      - xpack.security.encryptionKey=some_random_encryption_key
-      - xpack.encryptedSavedObjects.encryptionKey=another_random_encryption_key
-      - xpack.reporting.kibanaServer.hostname=localhost
-      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
     healthcheck:
       test:
         [
