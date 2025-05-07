@@ -79,8 +79,8 @@ services:
     ports: # Mapeo de puertos
       - "5601:5601" # Puertos específicos, el primero es en referencia al puerto local y el segundo al del contenedor de Docker
 
-volumes: # Volumen para la persistencia de datos
-  esdata:
+volumes: 
+  esdata: # Define el volumen esdata usando el driver local de Docker
     driver: local
 
 ```
